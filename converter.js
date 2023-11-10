@@ -1197,14 +1197,14 @@ const randomTexts = [
 var convertAll = true; // whether to convert and display all available fonts or not.
 var randomText = "The quick brown fox jumps over the lazy dog."; // random text used for placeholder if user input is null.
 var userInput = ""; // input from the user (updated on keyup)
-var selectedFont = ""; // the font the user selected.
+// var selectedFont = ""; // the font the user selected.
 var selectedStyle = ""; // the font style the user selected.
 var fonts = []; // all the fonts that the user can choose from
 
 /* Elements */
 const e_inputTextArea = document.getElementById("input-text-area");
-const e_fontSelect = document.getElementById("font-select");
-const e_fontStyleSelect = document.getElementById("font-style-select");
+// const e_fontSelect = document.getElementById("font-select");
+// const e_fontStyleSelect = document.getElementById("font-style-select");
 // const e_viewAllConversions = document.getElementById("view-all-conversions");
 
 const e_outputText = document.getElementById("output-text");
@@ -1243,7 +1243,7 @@ for (const _font of _fontFiles) {
       _newFont.fontName
     )})`;
   }
-  e_fontSelect.appendChild(_newFontOption);
+  // e_fontSelect.appendChild(_newFontOption);
 }
 
 // enable the text area once the fonts have been loaded.
@@ -1256,7 +1256,7 @@ e_inputTextArea.disabled = false;
 // })`; // excluding experimental fonts
 
 // select a random font to show at start.
-e_fontSelect.selectedIndex = Math.floor(Math.random() * fonts.length);
+// e_fontSelect.selectedIndex = Math.floor(Math.random() * fonts.length);
 
 // update all variables and convert the first text.
 updateUserInput();
@@ -1272,20 +1272,20 @@ e_inputTextArea.addEventListener("keyup", () => {
 });
 
 // Convert text when font is changed from the list.
-e_fontSelect.addEventListener("change", () => {
-  updateFontInput();
-  convertText();
-});
+// e_fontSelect.addEventListener("change", () => {
+//   updateFontInput();
+//   convertText();
+// });
 
 // Convert text when font style is changed from the list.
-e_fontStyleSelect.addEventListener("change", () => {
-  updateFontInput();
-  updateUserInput();
-  convertText();
-});
+// e_fontStyleSelect.addEventListener("change", () => {
+//   updateFontInput();
+//   updateUserInput();
+//   convertText();
+// });
 
-// Copy content to clipboard if the user clicks on the converted text.
-e_outputText.addEventListener("click", () => {
+function onClickText(text) {
+  e_outputText.innerHTML = text;
   let _range = document.createRange();
   window.getSelection().removeAllRanges();
   _range.selectNode(e_outputText);
@@ -1295,7 +1295,7 @@ e_outputText.addEventListener("click", () => {
 
   // To-Do: replace this with a less annoying pop-up later.
   alert("Copied to clipboard!");
-});
+}
 
 /* Update Functions */
 function updateUserInput() {
@@ -1305,7 +1305,7 @@ function updateUserInput() {
   } else {
     // generate a new random placeholder if the textarea has no value.
     updateRandomText();
-    userInput = randomText;
+    userInput = "Hello world";
   }
 
   switch (selectedStyle) {
@@ -1329,8 +1329,8 @@ function updateUserInput() {
 
 function updateFontInput() {
   // update the selected font and its style.
-  selectedFont = fonts.find((fnt) => fnt.fontName === e_fontSelect.value);
-  selectedStyle = e_fontStyleSelect.value;
+  // selectedFont = fonts.find((fnt) => fnt.fontName === e_fontSelect.value);
+  // selectedStyle = e_fontStyleSelect.value;
 }
 
 function updateRandomText() {
@@ -1341,7 +1341,7 @@ function updateRandomText() {
 /* Conversion Functions */
 function convertText() {
   // update the main font output.
-  e_outputText.innerHTML = selectedFont.convert(userInput);
+  // e_outputText.innerHTML = selectedFont.convert(userInput);
 }
 
 function convertTextAll() {
@@ -1358,13 +1358,25 @@ function convertTextAll() {
     for (const _font of fonts) {
       if (!_font.experimental) {
         let _li = document.createElement("li");
-        _li.classList.add("p-1", "border", "rounded-md", "shadow-md");
+        _li.classList.add(
+          "p-1",
+          "border",
+          "rounded-md",
+          "shadow-md",
+          "hover:cursor-pointer"
+        );
         _li.innerHTML = `<p>${_font.convert(userInput)}</p>`;
+
+        _li.addEventListener("click", () =>
+          onClickText(_font.convert(userInput))
+        );
         e_outputList.appendChild(_li);
       }
     }
   }
 }
+
+convertTextAll();
 
 // Set a randomly generated pastel color for the background.
 // just a cute little addition ^^

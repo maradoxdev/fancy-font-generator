@@ -68,30 +68,34 @@
     <script src="https://cdn.tailwindcss.com"></script>
   </head>
 
-  <body class="mx-auto mt-8 w-[88%] max-w-6xl bg-[#30d5c8]">
-    <div class="shadow-xl p-4 rounded-xl bg-white color-[#212427]">
+  <body class="mx-auto my-8 w-[88%] max-w-6xl bg-[#30d5c8]">
+    <div class="shadow-xl p-4 py-8 rounded-xl bg-white color-[#212427]">
       <div class="text-center sans-serif">
-        <img
-          src="https://assets-global.website-files.com/64a2dd111073f2562fb7348d/64a2dd111073f2562fb734d0_logo-such-top.svg"
-        />
-        <h1 aria-label="Fancy Fonts Bot" class="text-3xl text-pink my-4">
-          𝕱𝖔𝖓𝖙𝖘 𝖌𝖊𝖓𝖊𝖗𝖆𝖙𝖔𝖗 𝖋𝖔𝖗 𝕿𝖊𝖑𝖊𝖌𝖗𝖆𝖒
-        </h1>
-        <p class="my-4">
-          A cool little web app that lets you convert regular text into weird
-          (and cool) unicode pseudofonts.
-        </p>
+        <div class="flex">
+          <img
+            src="https://assets-global.website-files.com/64a2dd111073f2562fb7348d/64a2dd111073f2562fb734d0_logo-such-top.svg"
+          />
+          <h1
+            aria-label="Fancy Fonts Bot"
+            class="text-4xl text-[#6e1c5c] my-4 text-bold mx-auto"
+          >
+            𝕱𝖔𝖓𝖙𝖘 𝖌𝖊𝖓𝖊𝖗𝖆𝖙𝖔𝖗 𝖋𝖔𝖗 𝕿𝖊𝖑𝖊𝖌𝖗𝖆𝖒
+          </h1>
+        </div>
+        <div class="px-16">
+          <textarea
+            id="input-text-area"
+            rows="4"
+            cols="60"
+            disabled
+            placeholder="Type something!"
+            class="w-full rounded-md bg-transparent p-4 border-2 resize-none my-4"
+          >
+Hello world</textarea
+          >
+        </div>
 
-        <textarea
-          id="input-text-area"
-          rows="4"
-          cols="60"
-          disabled
-          placeholder="Type something!"
-          class="w-[90%] rounded-md bg-transparent p-4 border-2 resize-none my-4"
-        ></textarea>
-
-        <div
+        <!-- <div
           class="flex flex-column gap-1 items-center justify-center md:flex-row md:gap-0"
         >
           <label class="text-center"
@@ -119,16 +123,17 @@
               <option value="reverse">Reversed</option>
             </select>
           </label>
-        </div>
+        </div> -->
       </div>
 
-      <div class="container text-center text-size-large">
+      <div class="text-center text-size-large h-1 overflow-hidden">
         <p title="Click to copy" id="output-text" class="break-all"></p>
       </div>
 
-      <div class="container">
-        <ul id="output-list" class="break-all grid grid-cols-3 gap-2"></ul>
-      </div>
+      <ul
+        id="output-list"
+        class="break-all grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2 text-md px-16"
+      ></ul>
     </div>
 
     <script
