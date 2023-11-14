@@ -1359,11 +1359,16 @@ function convertTextAll() {
       if (!_font.experimental) {
         let _li = document.createElement("li");
         _li.classList.add(
-          "p-1",
+          "p-2",
+          "px-4",
           "border",
-          "rounded-md",
+          "rounded-lg",
           "shadow-md",
-          "hover:cursor-pointer"
+          "hover:cursor-pointer",
+          "bg-transparent",
+          "text-[#6e1c5c]",
+          "border-1",
+          "border-[#6e1c5c]"
         );
         _li.innerHTML = `<p>${_font.convert(userInput)}</p>`;
 
